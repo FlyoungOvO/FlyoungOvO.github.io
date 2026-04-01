@@ -1,0 +1,57 @@
+baseURL = "https://flyoungovo.github.io/"
+languageCode = "zh-cn"
+title = "Flyoung Blog"
+theme = "PaperMod"
+enableRobotsTXT = true
+
+[pagination]
+pagerSize = 10
+
+[outputs]
+home = ["HTML", "RSS", "JSON"]
+
+[taxonomies]
+tag = "tags"
+category = "categories"
+
+[params]
+env = "production"
+title = "Flyoung Blog"
+description = "Flyoung 的个人博客，记录学习、思考与项目。"
+author = "Flyoung"
+defaultTheme = "auto"
+ShowReadingTime = true
+ShowShareButtons = true
+ShowPostNavLinks = true
+ShowBreadCrumbs = true
+ShowCodeCopyButtons = true
+ShowWordCount = true
+ShowToc = true
+TocOpen = false
+mainSections = ["posts"]
+
+[params.homeInfoParams]
+Title = "Flyoung Blog"
+Content = "记录 AI、工程实践、阅读和个人项目。这里会持续更新我的文章、笔记与阶段性总结。"
+
+[[params.socialIcons]]
+name = "github"
+url = "https://github.com/FlyoungOvO"
+
+[[menu.main]]
+identifier = "posts"
+name = "Posts"
+url = "/posts/"
+weight = 10
+
+[[menu.main]]
+identifier = "archives"
+name = "Archives"
+url = "/archives/"
+weight = 20
+
+[[menu.main]]
+identifier = "about"
+name = "About"
+url = "/about/"
+weight = 30
