@@ -1,10 +1,10 @@
 @import url("https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700;800&family=Noto+Sans+SC:wght@400;500;700&family=Noto+Serif+SC:wght@600;700;900&display=swap");
 
 :root {
-  --theme: #f6f1e7;
-  --entry: #fbf7ef;
-  --surface-strong: #f1eadf;
-  --surface-soft: #efe7d7;
+  --theme: #f7f4ed;
+  --entry: #f7f4ed;
+  --surface-strong: #f2ede3;
+  --surface-soft: #f4efe6;
   --primary: #181512;
   --secondary: #5e5850;
   --tertiary: #d7cfc0;
@@ -239,7 +239,7 @@ body {
   padding: 18px 22px;
   border: 1px solid var(--border);
   border-radius: 22px;
-  background: #fbf8f1;
+  background: var(--entry);
   box-shadow: none;
 }
 
@@ -267,7 +267,7 @@ body {
   gap: 8px;
   padding: 8px;
   border-radius: 22px;
-  background: #efe8d8;
+  background: var(--surface-strong);
 }
 
 .browser-mode-button {
