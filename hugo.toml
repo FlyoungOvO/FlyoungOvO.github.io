@@ -29,6 +29,7 @@ ShowWordCount = true
 ShowToc = true
 TocOpen = false
 mainSections = ["posts"]
+DateFormat = "2006-01-02"
 
 [params.homeInfoParams]
 Title = "Flyoung Blog"
@@ -45,13 +46,31 @@ url = "/posts/"
 weight = 10
 
 [[menu.main]]
+identifier = "search"
+name = "Search"
+url = "/search/"
+weight = 20
+
+[[menu.main]]
+identifier = "tags"
+name = "Tags"
+url = "/tags/"
+weight = 30
+
+[[menu.main]]
+identifier = "categories"
+name = "Categories"
+url = "/categories/"
+weight = 40
+
+[[menu.main]]
 identifier = "archives"
 name = "Archives"
 url = "/archives/"
-weight = 20
+weight = 50
 
 [[menu.main]]
 identifier = "about"
 name = "About"
 url = "/about/"
-weight = 30
+weight = 60
