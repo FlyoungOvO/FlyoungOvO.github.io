@@ -26,10 +26,7 @@
 html,
 body {
   font-family: var(--font-ui);
-  background:
-    radial-gradient(circle at top left, rgba(222, 194, 138, 0.12), transparent 22%),
-    radial-gradient(circle at top right, rgba(216, 179, 123, 0.1), transparent 20%),
-    linear-gradient(180deg, #f8f3ea 0%, #f4eee3 100%);
+  background: #f7f4ed;
   color: var(--content);
 }
 
@@ -242,8 +239,8 @@ body {
   padding: 18px 22px;
   border: 1px solid var(--border);
   border-radius: 22px;
-  background: rgba(255, 252, 246, 0.86);
-  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.45);
+  background: #fbf8f1;
+  box-shadow: none;
 }
 
 .browser-search svg,
@@ -270,7 +267,7 @@ body {
   gap: 8px;
   padding: 8px;
   border-radius: 22px;
-  background: var(--surface-strong);
+  background: #efe8d8;
 }
 
 .browser-mode-button {
@@ -430,19 +427,103 @@ body {
 
 [data-view="list"] .browser-results__grid {
   grid-template-columns: 1fr;
+  gap: 0;
+  border-top: 1px solid var(--border);
 }
 
 [data-view="list"] .editorial-card {
-  grid-template-columns: minmax(260px, 320px) 1fr;
-  min-height: 300px;
+  grid-template-columns: minmax(0, 1.5fr) minmax(180px, .8fr) minmax(140px, .6fr);
+  min-height: auto;
+  border: 0;
+  border-bottom: 1px solid var(--border);
+  border-radius: 0;
+  box-shadow: none;
+  background: transparent;
+  align-items: center;
 }
 
-[data-view="list"] .editorial-card__cover {
-  min-height: 100%;
+[data-view="list"] .editorial-card:hover {
+  transform: none;
+  border-color: transparent;
+  box-shadow: none;
+}
+
+[data-view="list"] .editorial-card__cover,
+[data-view="list"] .editorial-card__summary,
+[data-view="list"] .editorial-card__updated {
+  display: none;
 }
 
 [data-view="list"] .editorial-card__body {
-  padding: 34px;
+  display: contents;
+}
+
+[data-view="list"] .editorial-card__date,
+[data-view="list"] .editorial-card__title,
+[data-view="list"] .editorial-card__meta {
+  padding: 30px 0;
+}
+
+[data-view="list"] .editorial-card__title {
+  font-family: var(--font-ui);
+  font-size: clamp(1.05rem, 1.8vw, 1.28rem);
+  font-weight: 500;
+  letter-spacing: -0.02em;
+  line-height: 1.25;
+}
+
+[data-view="list"] .editorial-card__date {
+  order: 1;
+  color: var(--primary);
+}
+
+[data-view="list"] .editorial-card__title {
+  order: 2;
+  padding-right: 24px;
+}
+
+[data-view="list"] .editorial-card__meta {
+  order: 3;
+  justify-self: start;
+}
+
+[data-view="list"] .editorial-card__pill {
+  font-size: 0.86rem;
+}
+
+[data-view="list"] .browser-results__head {
+  margin-bottom: 8px;
+}
+
+[data-view="list"] .browser-results__head::after {
+  content: "";
+  display: block;
+}
+
+[data-view="list"] .browser-results__head {
+  position: relative;
+  padding-bottom: 12px;
+}
+
+[data-view="list"] .browser-results__head .browser-results__label {
+  display: none;
+}
+
+[data-view="list"] .browser-results__head .browser-results__count {
+  visibility: hidden;
+}
+
+[data-view="list"] .browser-results__grid::before {
+  content: "Title\A Date\A Category";
+  display: grid;
+  grid-template-columns: minmax(0, 1.5fr) minmax(180px, .8fr) minmax(140px, .6fr);
+  align-items: end;
+  white-space: pre;
+  padding: 0 0 12px;
+  color: var(--secondary);
+  font-size: 0.84rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
 }
 
 .browser-results__empty {
@@ -506,6 +587,16 @@ body {
   line-height: 1.92;
 }
 
+.editorial-article__body code {
+  padding: 0 .18em;
+  border-radius: 0;
+  background: transparent;
+  color: var(--primary);
+  font-size: .94em;
+  font-family: "SFMono-Regular", "Cascadia Code", "Menlo", monospace;
+  border-bottom: 1px solid rgba(53, 43, 33, 0.12);
+}
+
 .editorial-article__body h2,
 .editorial-article__body h3,
 .editorial-article__body h4 {
@@ -540,6 +631,10 @@ body {
 .editorial-article__footer {
   max-width: 760px;
   margin: 48px auto 0;
+}
+
+.editorial-article__share {
+  display: none;
 }
 
 .page-header,
@@ -611,6 +706,16 @@ body {
 
   [data-view="list"] .editorial-card {
     grid-template-columns: 1fr;
+  }
+
+  [data-view="list"] .browser-results__grid::before {
+    display: none;
+  }
+
+  [data-view="list"] .editorial-card__date,
+  [data-view="list"] .editorial-card__title,
+  [data-view="list"] .editorial-card__meta {
+    padding: 8px 0;
   }
 
   .editorial-card {

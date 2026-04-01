@@ -49,11 +49,6 @@
           {{ partial "post_nav_links.html" . }}
         </div>
         {{- end }}
-        {{- if (and site.Params.ShowShareButtons (ne .Params.disableShare true)) }}
-        <div class="editorial-article__share">
-          {{ partial "share_icons.html" . }}
-        </div>
-        {{- end }}
       </footer>
     </div>
   </section>
