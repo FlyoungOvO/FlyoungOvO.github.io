@@ -1,0 +1,39 @@
+{{- $category := "Notes" -}}
+{{- with index .Params.categories 0 }}{{- $category = . -}}{{- end -}}
+{{- $year := "" -}}
+{{- if not .Date.IsZero }}{{- $year = .Date.Format "2006" -}}{{- end -}}
+{{- $tags := slice -}}
+{{- range .Params.tags }}{{- $tags = $tags | append (. | urlize) -}}{{- end -}}
+{{- $categories := slice -}}
+{{- range .Params.categories }}{{- $categories = $categories | append (. | urlize) -}}{{- end -}}
+{{- $summary := .Summary | plainify | htmlUnescape -}}
+
+<article
+  class="editorial-card"
+  data-browser-item
+  data-title="{{ .Title | lower }}"
+  data-summary="{{ $summary | lower }}"
+  data-year="{{ $year }}"
+  data-date="{{ if not .Date.IsZero }}{{ .Date.Format "2006-01-02" }}{{ end }}"
+  data-category="{{ delimit $categories " " }}"
+  data-tag="{{ delimit $tags " " }}">
+  <a class="editorial-card__link" href="{{ .RelPermalink }}"></a>
+  <div class="editorial-card__cover" data-category-name="{{ $category | title }}">
+    <div class="editorial-card__cover-mark"></div>
+    <div class="editorial-card__cover-frame">
+      <span>{{ upper (substr ($category | default "N") 0 1) }}</span>
+    </div>
+    <div class="editorial-card__cover-line"></div>
+  </div>
+  <div class="editorial-card__body">
+    <p class="editorial-card__date">{{ if not .Date.IsZero }}{{ .Date.Format "Jan 2, 2006" }}{{ end }}</p>
+    <h3 class="editorial-card__title">{{ .Title }}</h3>
+    <p class="editorial-card__summary">{{ $summary }}</p>
+    <div class="editorial-card__meta">
+      <span class="editorial-card__pill">{{ $category }}</span>
+      {{- if and (not .Lastmod.IsZero) (ne (.Lastmod.Format "2006-01-02") (.Date.Format "2006-01-02")) }}
+      <span class="editorial-card__updated">Updated {{ .Lastmod.Format "Jan 2, 2006" }}</span>
+      {{- end }}
+    </div>
+  </div>
+</article>

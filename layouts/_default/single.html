@@ -1,0 +1,59 @@
+{{ define "main" }}
+<article class="editorial-article">
+  <header class="post-hero">
+    <div class="post-hero__inner">
+      {{ partial "breadcrumbs.html" . }}
+      <p class="post-hero__eyebrow">{{ with index .Params.categories 0 }}{{ . }}{{ else }}Essay{{ end }}</p>
+      <h1 class="post-hero__title">{{ .Title }}</h1>
+      {{ if .Description }}
+      <p class="post-hero__summary">{{ .Description }}</p>
+      {{ else if .Summary }}
+      <p class="post-hero__summary">{{ .Summary | plainify }}</p>
+      {{ end }}
+      <div class="post-hero__meta">
+        {{ partial "post_meta.html" . }}
+      </div>
+      <div class="post-hero__tags">
+        {{- $tags := .Language.Params.Taxonomies.tag | default "tags" }}
+        {{- range ($.GetTerms $tags) }}
+        <a href="{{ .Permalink }}">{{ .LinkTitle }}</a>
+        {{- end }}
+      </div>
+    </div>
+  </header>
+
+  <section class="editorial-article__layout">
+    {{- if (.Param "ShowToc") }}
+    <aside class="editorial-article__toc">
+      <div class="editorial-article__toc-card">
+        <p class="editorial-article__toc-label">On this page</p>
+        {{ partial "toc.html" . }}
+      </div>
+    </aside>
+    {{- end }}
+
+    <div class="editorial-article__content">
+      <div class="editorial-article__body post-content">
+        {{- if not (.Param "disableAnchoredHeadings") }}
+        {{ partial "anchored_headings.html" .Content }}
+        {{- else }}
+        {{ .Content }}
+        {{- end }}
+      </div>
+
+      <footer class="editorial-article__footer">
+        {{- if (.Param "ShowPostNavLinks") }}
+        <div class="editorial-article__nav">
+          {{ partial "post_nav_links.html" . }}
+        </div>
+        {{- end }}
+        {{- if (and site.Params.ShowShareButtons (ne .Params.disableShare true)) }}
+        <div class="editorial-article__share">
+          {{ partial "share_icons.html" . }}
+        </div>
+        {{- end }}
+      </footer>
+    </div>
+  </section>
+</article>
+{{ end }}

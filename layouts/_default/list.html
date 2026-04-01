@@ -1,0 +1,35 @@
+{{ define "main" }}
+{{- $pages := union .RegularPages .Sections -}}
+{{- if .IsHome -}}
+  {{- $pages = where site.RegularPages "Type" "in" site.Params.mainSections -}}
+{{- end -}}
+
+<section class="editorial-shell blog-browser" data-browser-root data-view="grid">
+  <div class="editorial-page-header">
+    {{ partial "breadcrumbs.html" . }}
+    <p class="editorial-page-header__eyebrow">Browse</p>
+    <h1 class="editorial-page-header__title">{{ .Title }}</h1>
+    {{- if .Description }}
+    <p class="editorial-page-header__summary">{{ .Description | markdownify }}</p>
+    {{- else if .Content }}
+    <div class="editorial-page-header__summary">{{ .Content }}</div>
+    {{- end }}
+  </div>
+
+  <section class="browser-layout">
+    {{ partial "blog_browser_controls.html" (dict "Pages" $pages) }}
+    <div class="browser-results">
+      <div class="browser-results__head">
+        <p class="browser-results__label">Archive view</p>
+        <p class="browser-results__count"><span data-browser-count>{{ len $pages }}</span> posts</p>
+      </div>
+      <div class="browser-results__grid" data-browser-results>
+        {{ range $pages }}
+        {{ partial "editorial_post_card.html" . }}
+        {{ end }}
+      </div>
+      <p class="browser-results__empty" data-browser-empty hidden>No posts match the current search and filters.</p>
+    </div>
+  </section>
+</section>
+{{ end }}

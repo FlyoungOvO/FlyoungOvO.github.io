@@ -1,0 +1,30 @@
+{{ define "main" }}
+{{- $pages := where site.RegularPages "Type" "in" site.Params.mainSections -}}
+{{- $pages = where $pages "Params.hiddenInHomeList" "!=" "true" -}}
+
+<section class="editorial-shell blog-browser" data-browser-root data-view="grid">
+  <div class="editorial-hero">
+    <p class="editorial-hero__eyebrow">Personal notes and essays</p>
+    <h1 class="editorial-hero__title">A quieter, more deliberate space for AI notes, engineering work, and long-form thinking.</h1>
+    <p class="editorial-hero__summary">
+      This blog collects project writeups, study notes, and revisions over time. The interface is designed for browsing, comparing, and returning to ideas rather than simply scrolling through a feed.
+    </p>
+  </div>
+
+  <section class="browser-layout">
+    {{ partial "blog_browser_controls.html" (dict "Pages" $pages) }}
+    <div class="browser-results">
+      <div class="browser-results__head">
+        <p class="browser-results__label">Latest writing</p>
+        <p class="browser-results__count"><span data-browser-count>{{ len $pages }}</span> posts</p>
+      </div>
+      <div class="browser-results__grid" data-browser-results>
+        {{ range $pages }}
+        {{ partial "editorial_post_card.html" . }}
+        {{ end }}
+      </div>
+      <p class="browser-results__empty" data-browser-empty hidden>No posts match the current search and filters.</p>
+    </div>
+  </section>
+</section>
+{{ end }}

@@ -1,2 +1,7 @@
-{{- $needsMath := or site.Params.math .Params.math -}}
-{{- if $needsMath }}{{- end }}
+{{- $browserScript := resources.Get "js/blog-browser.js" | resources.Minify -}}
+{{- if not site.Params.assets.disableFingerprinting }}
+{{- $browserScript = $browserScript | fingerprint -}}
+<script defer crossorigin="anonymous" src="{{ $browserScript.RelPermalink }}" integrity="{{ $browserScript.Data.Integrity }}"></script>
+{{- else }}
+<script defer crossorigin="anonymous" src="{{ $browserScript.RelPermalink }}"></script>
+{{- end }}

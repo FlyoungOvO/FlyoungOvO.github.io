@@ -1,0 +1,94 @@
+{{- $categories := slice -}}
+{{- $tags := slice -}}
+{{- $years := slice -}}
+{{- range .Pages -}}
+  {{- range .Params.categories -}}
+    {{- $categories = $categories | append . -}}
+  {{- end -}}
+  {{- range .Params.tags -}}
+    {{- $tags = $tags | append . -}}
+  {{- end -}}
+  {{- if not .Date.IsZero -}}
+    {{- $years = $years | append (.Date.Format "2006") -}}
+  {{- end -}}
+{{- end -}}
+
+<aside class="browser-sidebar">
+  <div class="browser-sidebar__inner">
+    <p class="browser-sidebar__eyebrow">Browse the archive</p>
+    <h2 class="browser-sidebar__title">Filter and sort</h2>
+
+    <details class="browser-filter" open>
+      <summary>Sort by</summary>
+      <div class="browser-filter__options">
+        <button class="browser-chip is-active" type="button" data-sort-value="newest">Newest</button>
+        <button class="browser-chip" type="button" data-sort-value="oldest">Oldest</button>
+        <button class="browser-chip" type="button" data-sort-value="title">Title</button>
+      </div>
+    </details>
+
+    <details class="browser-filter" open>
+      <summary>Category</summary>
+      <div class="browser-filter__options">
+        <button class="browser-chip is-active" type="button" data-filter-group="category" data-filter-value="">All</button>
+        {{- range ($categories | uniq | sort) }}
+        <button class="browser-chip" type="button" data-filter-group="category" data-filter-value="{{ . | urlize }}">{{ . }}</button>
+        {{- end }}
+      </div>
+    </details>
+
+    <details class="browser-filter">
+      <summary>Tag</summary>
+      <div class="browser-filter__options">
+        <button class="browser-chip is-active" type="button" data-filter-group="tag" data-filter-value="">All</button>
+        {{- range ($tags | uniq | sort) }}
+        <button class="browser-chip" type="button" data-filter-group="tag" data-filter-value="{{ . | urlize }}">{{ . }}</button>
+        {{- end }}
+      </div>
+    </details>
+
+    <details class="browser-filter">
+      <summary>Year</summary>
+      <div class="browser-filter__options">
+        <button class="browser-chip is-active" type="button" data-filter-group="year" data-filter-value="">All</button>
+        {{- range ($years | uniq | sort | collections.Reverse) }}
+        <button class="browser-chip" type="button" data-filter-group="year" data-filter-value="{{ . }}">{{ . }}</button>
+        {{- end }}
+      </div>
+    </details>
+  </div>
+</aside>
+
+<div class="browser-main">
+  <div class="browser-toolbar">
+    <label class="browser-search">
+      <svg viewBox="0 0 24 24" aria-hidden="true">
+        <circle cx="11" cy="11" r="7"></circle>
+        <path d="M20 20l-3.5-3.5"></path>
+      </svg>
+      <input type="search" placeholder="Search posts" aria-label="Search posts" data-browser-search>
+    </label>
+
+    <div class="browser-mode-toggle" role="tablist" aria-label="View mode">
+      <button class="browser-mode-button is-active" type="button" data-view-target="grid" aria-pressed="true">
+        <svg viewBox="0 0 24 24" aria-hidden="true">
+          <rect x="3" y="3" width="7" height="7"></rect>
+          <rect x="14" y="3" width="7" height="7"></rect>
+          <rect x="3" y="14" width="7" height="7"></rect>
+          <rect x="14" y="14" width="7" height="7"></rect>
+        </svg>
+        <span>Grid</span>
+      </button>
+      <button class="browser-mode-button" type="button" data-view-target="list" aria-pressed="false">
+        <svg viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M8 6h13"></path>
+          <path d="M8 12h13"></path>
+          <path d="M8 18h13"></path>
+          <circle cx="4" cy="6" r="1"></circle>
+          <circle cx="4" cy="12" r="1"></circle>
+          <circle cx="4" cy="18" r="1"></circle>
+        </svg>
+        <span>List</span>
+      </button>
+    </div>
+  </div>
