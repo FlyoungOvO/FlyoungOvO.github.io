@@ -1,14 +1,2 @@
 {{- $needsMath := or site.Params.math .Params.math -}}
-{{- if $needsMath }}
-<script
-  defer
-  src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"
-  integrity="sha384-7zkQWj609xgL2KxD7wY+KplGMQZ43xB5zNiQeZq5L0M0U8nyCLlcQFV3ayh5n7G5"
-  crossorigin="anonymous"></script>
-<script
-  defer
-  src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"
-  integrity="sha384-hCXGrW6PitJEwbkoStFjeJxv+fSOOQKOPbJxSfM6G5sWZjAyWhXiTIIAmQqnlLlh"
-  crossorigin="anonymous"
-  onload="renderMathInElement(document.body,{delimiters:[{left:'$$',right:'$$',display:true},{left:'$',right:'$',display:false}],throwOnError:false,ignoredTags:['script','noscript','style','textarea','pre','code']});"></script>
-{{- end }}
+{{- if $needsMath }}{{- end }}
