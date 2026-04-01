@@ -1,10 +1,10 @@
 @import url("https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700;800&family=Noto+Sans+SC:wght@400;500;700&family=Noto+Serif+SC:wght@600;700;900&display=swap");
 
 :root {
-  --theme: #f7f4ed;
-  --entry: #f7f4ed;
-  --surface-strong: #f2ede3;
-  --surface-soft: #f4efe6;
+  --theme: #f6f1e7;
+  --entry: #f6f1e7;
+  --surface-strong: #f1eadf;
+  --surface-soft: #efe7d7;
   --primary: #181512;
   --secondary: #5e5850;
   --tertiary: #d7cfc0;
@@ -26,19 +26,25 @@
 html,
 body {
   font-family: var(--font-ui);
-  background: #f7f4ed;
+  background: var(--theme);
   color: var(--content);
+}
+
+html {
+  background: var(--theme);
 }
 
 body {
   letter-spacing: 0;
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
+  background: var(--theme);
 }
 
 .main {
   max-width: 1380px;
   padding: 0 32px 80px;
+  background: transparent;
 }
 
 .header {
@@ -97,6 +103,7 @@ body {
   display: grid;
   gap: 38px;
   padding-top: 28px;
+  background: transparent;
 }
 
 .editorial-hero,
@@ -156,12 +163,14 @@ body {
   grid-template-columns: 290px minmax(0, 1fr);
   gap: 34px;
   align-items: start;
+  background: transparent;
 }
 
 .browser-sidebar__inner {
   position: sticky;
   top: 24px;
   padding: 8px;
+  background: transparent;
 }
 
 .browser-sidebar__title {
@@ -239,7 +248,7 @@ body {
   padding: 18px 22px;
   border: 1px solid var(--border);
   border-radius: 22px;
-  background: var(--entry);
+  background: var(--theme);
   box-shadow: none;
 }
 
@@ -268,6 +277,11 @@ body {
   padding: 8px;
   border-radius: 22px;
   background: var(--surface-strong);
+}
+
+.browser-results,
+.browser-main {
+  background: transparent;
 }
 
 .browser-mode-button {
