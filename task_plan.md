@@ -8,10 +8,11 @@
 - [completed] 2. 重做首页与文章列表模板
 - [completed] 3. 重做文章详情页模板与排版
 - [completed] 4. 新增站点样式与交互脚本
-- [in_progress] 5. 本地验证、提交并部署
+- [completed] 5. 本地验证、提交并部署
 
 ## Errors Encountered
 | Error | Attempt | Resolution |
 |---|---:|---|
 | 数学公式脚本曾受 footer 缓存影响 | 1 | 已改为在 head 层稳定注入 |
 | 第二轮精修后首页与控件背景风格不统一 | 1 | 已统一为更接近 Claude blog 的暖白底，并同步控件底色 |
+| `search/tags/categories/archives` 仅颜色统一但结构未统一 | 1 | 已新增独立模板，统一为 editorial browser 结构 |

@@ -8,3 +8,5 @@
 - 已新增文章详情页的编辑型头图区域、目录侧栏与重排正文样式。
 - 本地 `hugo --minify` 构建已通过，待提交并推送部署。
 - 已完成第二轮精修：统一背景、简化 list 视觉、调整 inline code 样式、删除文章页分享外链。
+- 已新增 `search`、`terms(tags/categories)`、`archives` 的自定义模板，统一到同一套 editorial browser 结构。
+- 已再次通过 `hugo --source /Users/flyoung/LLM/FlyoungBlog --minify` 验证生成结果，并确认 `public/search/`、`public/tags/`、`public/categories/`、`public/archives/` 都使用统一结构。

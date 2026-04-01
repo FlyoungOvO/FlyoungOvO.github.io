@@ -1,0 +1,17 @@
+{{- $targetPage := site.GetPage (printf "/%s/%s" .Type .Name) -}}
+<article class="editorial-card editorial-card--term">
+  <a class="editorial-card__link" href="{{ if $targetPage }}{{ $targetPage.RelPermalink }}{{ else }}#{{ end }}"></a>
+  <div class="editorial-card__cover editorial-card__cover--term">
+    <div class="editorial-card__cover-frame">
+      <span>{{ upper (substr (.Name | default "T") 0 1) }}</span>
+    </div>
+  </div>
+  <div class="editorial-card__body">
+    <p class="editorial-card__date">{{ .Count }} posts</p>
+    <h3 class="editorial-card__title">{{ .Name }}</h3>
+    <p class="editorial-card__summary">Browse every post filed under {{ .Name }}.</p>
+    <div class="editorial-card__meta">
+      <span class="editorial-card__pill">{{ .Type }}</span>
+    </div>
+  </div>
+</article>

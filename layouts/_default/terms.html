@@ -1,0 +1,25 @@
+{{ define "main" }}
+<section class="editorial-shell blog-browser taxonomy-browser">
+  <div class="editorial-page-header">
+    {{ partial "breadcrumbs.html" . }}
+    <p class="editorial-page-header__eyebrow">Taxonomy</p>
+    <h1 class="editorial-page-header__title">{{ .Title }}</h1>
+    <p class="editorial-page-header__summary">Browse the archive by {{ .Title | lower }}. These pages now share the same visual system as the rest of the site.</p>
+  </div>
+
+  <section class="browser-layout browser-layout--full">
+    <div class="browser-results">
+      <div class="browser-results__head">
+        <p class="browser-results__label">{{ .Title }}</p>
+        <p class="browser-results__count">{{ len .Data.Terms }} groups</p>
+      </div>
+      <div class="browser-results__grid browser-results__grid--terms">
+        {{- $type := .Type -}}
+        {{- range .Data.Terms.Alphabetical }}
+        {{ partial "editorial_term_card.html" (dict "Name" .Name "Count" .Count "Type" $type) }}
+        {{- end }}
+      </div>
+    </div>
+  </section>
+</section>
+{{ end }}
