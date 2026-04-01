@@ -1,4 +1,6 @@
 {{ define "main" }}
+{{- $rawToc := .TableOfContents -}}
+{{- $hasToc := and (.Param "ShowToc") (in $rawToc "<li>") -}}
 <article class="editorial-article">
   <header class="post-hero">
     <div class="post-hero__inner">
@@ -23,7 +25,7 @@
   </header>
 
   <section class="editorial-article__layout">
-    {{- if (.Param "ShowToc") }}
+    {{- if $hasToc }}
     <aside class="editorial-article__toc">
       <div class="editorial-article__toc-card">
         <p class="editorial-article__toc-label">On this page</p>
